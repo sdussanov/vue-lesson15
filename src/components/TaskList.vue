@@ -2,11 +2,19 @@
     <div>
         <h3>Задачи:</h3>
         <div class="task" v-for="(task, index) in tasks" :key="index">
-            <Task :task="task" />
-            Номер: {{ task.id }}<br>
-            Статус: {{ task.completed }}<br>
+            <Task :task="task" @delete-task="deleteTask">
+                Номер: {{ task.id }}<br>
+                Статус: {{ task.completed }}<br>
+                <template v-slot:details>
+                    <div>
+                        <h4>Подробнее - "{{ task.title }}"</h4>
+                        <p>{{ task.description }}</p>
+                    </div>
+                </template>
+            </Task>
         </div>
         <p>Всего задач в пуле: {{ totalTasks }}</p>
+        <p>Всего завершенных задач: {{ completedTasks }}</p>
         <TaskForm @add-task="addTask" />
     </div>
 </template>
@@ -20,7 +28,10 @@ export default {
     computed: {
         totalTasks() {
             return this.tasks.length
-        }
+        },
+        completedTasks() {
+            return this.tasks.filter(task => task.completed).length;
+        },
     },
     components: {
         Task,
@@ -35,6 +46,10 @@ export default {
                 completed: false,
             });
         },
+        deleteTask(taskId) {
+            console.log('Удаляю в TaskList')
+            this.$emit("delete-task", taskId);
+        }
     }
 }
 </script>

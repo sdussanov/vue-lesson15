@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Lesson 15</h1>
-    <TaskList :tasks="tasks" />
+    <TaskList :tasks="tasks" @delete-task="deleteTask" />
   </div>
 </template> 
 
@@ -35,6 +35,12 @@ export default {
   },
   components: {
     TaskList
+  }, 
+  methods: {
+    deleteTask(taskId) {
+      console.log('Удаляю в HomeView')
+      this.tasks = this.tasks.filter(task => task.id !== taskId);
+    }
   }
 }
 </script>
