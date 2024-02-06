@@ -1,14 +1,16 @@
 <template>
-      <div>
-    <h2>Добавить новую задачу</h2>
+  <div class="container">
+    <h2>Добавить задачу</h2>
     <form @submit.prevent="addTask">
-      <label for="title">Заголовок:</label>
-      <input v-model="newTask.title" type="text" id="title" required>
-      <br><br>
-      <label for="description">Описание:</label>
-      <textarea v-model="newTask.description" id="description" required></textarea>
-      <br><br>
-      <button type="submit">Добавить</button>
+      <div class="mb-3">
+        <label for="title" class="form-label">Заголовок:</label>
+        <input v-model="newTask.title" type="text" class="form-control" id="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Описание:</label>
+        <textarea v-model="newTask.description" class="form-control" id="description" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
   </div>
 </template>
@@ -39,7 +41,4 @@ export default {
 </script>
 
 <style>
-h3 {
-    margin: 0px;
-}
 </style>

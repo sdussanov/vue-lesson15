@@ -1,0 +1,23 @@
+/* styles.css */
+  
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    margin: 5px 5px 0px 5px;
+  }
+    
+  .details-box {
+    border: 1px solid #a3a3a3;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+  }

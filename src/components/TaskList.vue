@@ -1,21 +1,15 @@
 <template>
-    <div>
-        <h3>Задачи:</h3>
-        <div class="task" v-for="(task, index) in tasks" :key="index">
-            <Task :task="task" @delete-task="deleteTask">
-                Номер: {{ task.id }}<br>
-                Статус: {{ task.completed }}<br>
-                <template v-slot:details>
-                    <div>
-                        <h4>Подробнее - "{{ task.title }}"</h4>
-                        <p>{{ task.description }}</p>
-                    </div>
-                </template>
-            </Task>
+    <div class="container">
+        <div class="text-center">
+            <h2>Список задач</h2>
         </div>
-        <p>Всего задач в пуле: {{ totalTasks }}</p>
-        <p>Всего завершенных задач: {{ completedTasks }}</p>
+
+        <div v-for="(task, index) in tasks" :key="index">
+            <Task :task="task" @delete-task="deleteTask" @toggle-completed="toggleCompleted" />
+        </div>
         <TaskForm @add-task="addTask" />
+        <p>Всего задач: {{ tasks.length }}</p>
+        <p>Выполнено задач: {{ completedTasks }}</p>
     </div>
 </template>
 
@@ -54,12 +48,4 @@ export default {
 }
 </script>
 
-<style>
-.task {
-    width: 30%;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-</style>
+<style></style>

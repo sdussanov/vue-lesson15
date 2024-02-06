@@ -5,5 +5,6 @@
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+@import url('../src/assets/styles.css');
 </style>

@@ -1,16 +1,25 @@
 <template>
-    <div :class="{ 'completed-task': task.completed }">
-        <h3>Задача: {{ task.title }}</h3>
-        <p>Описание: {{ task.description.substring(0, 15) }}...</p>
-        <label for="completed">Выполнено</label>
-        <input type="checkbox" v-model="task.completed" @change="toggleCompleted">
-        <br>
-        <button @click="deleteTask">Удалить</button>
-        <button @click="showDetails">Подробнее</button>
-        <div v-if="showDetailsBox" class="details-box">
-            <slot name="details">
-            </slot>
-            <button @click="hideDetails">Закрыть</button>
+    <div class="card">
+        <div :class="{ 'completed-task': task.completed }">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <p class="card-text">{{ task.description.substring(0, 15) }}...</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" v-model="task.completed" @change="toggleCompleted">
+                    <label class="form-check-label" for="completed">Выполнено</label>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-danger" @click="deleteTask">Удалить</button>
+                    <button class="btn btn-primary" @click="showDetails">Подробнее</button>
+                </div>
+                <div v-if="showDetailsBox" class="details-box">
+                    <h5>Подробнее о {{ task.title }}</h5>
+                    <p>{{ task.description }}</p>
+                    <div class="text-center">
+                        <button class="btn btn-secondary" @click="hideDetails">Закрыть</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -45,21 +54,8 @@ export default {
 </script>
 
 <style>
-h3 {
-    margin: 0px;
-}
-
-h4 {
-    margin: 0px;
-}
-
-.details-box {
-    border: 1px solid black;
-    padding: 10px;
-    margin-top: 10px;
-}
-
 .completed-task {
-  background-color: aquamarine;
+    background-color: lightgreen;
+    color: blue;
 }
 </style>
